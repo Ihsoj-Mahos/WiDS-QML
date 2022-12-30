@@ -9,7 +9,7 @@
 # *Coding so far* : 
 1. Completed problems 1, 2, 3.
 2. "Twist" problem is in progress
-3. Added a notebook to list different functionalities offered in Qiskit. [This](Week 1/QML-Intro.ipynb) can be referred by people unfamiliar with QML (like I was :p)
+3. Added a notebook to list different functionalities offered in Qiskit. [This](https://github.com/Ihsoj-Mahos/WiDS-QML/blob/master/Week%201/Assignment_1.ipynb) can be referred by people unfamiliar with QML (like I was :p)
 
 
 # *Report* : 
