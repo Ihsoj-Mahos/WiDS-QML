@@ -14,7 +14,7 @@ This repository contains my work in the project Learning with Quantum Computers 
 3. Added a notebook to list different functionalities offered in Qiskit. [This](https://github.com/Ihsoj-Mahos/WiDS-QML/blob/master/Week%201/QML_Intro.ipynb) can be referred by people unfamiliar with QML (like I was :p)
 
 # *Paper reading* : 
-In progress
+1. In progress
 
 # *Report* : 
 1. Yet to start
