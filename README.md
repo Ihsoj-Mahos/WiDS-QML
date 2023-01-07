@@ -11,10 +11,10 @@ This repository contains my work in the project Learning with Quantum Computers 
 # *Coding so far* : 
 1. Completed problems 1, 2, 3.
 2. "Twist" problem is in progress
-3. Added a notebook to list different functionalities offered in Qiskit. [This](https://github.com/Ihsoj-Mahos/WiDS-QML/blob/master/Week%201/QML_Intro.ipynb) can be referred by people unfamiliar with QML (like I was :p)
+3. Added a notebook to list different functionalities offered in Qiskit. [This](https://github.com/Ihsoj-Mahos/WiDS-QML/blob/master/Week%201/QML_Intro.ipynb) can be referred by people unfamiliar with QC (like I was :p)
 
 # *Paper reading* : 
 1. Completed reading the [paper](https://arxiv.org/abs/1409.3097)
 
 # *Report* : 
-1. Yet to start
+1. In progress
