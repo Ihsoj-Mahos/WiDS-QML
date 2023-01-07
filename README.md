@@ -17,4 +17,5 @@ This repository contains my work in the project Learning with Quantum Computers 
 1. Completed reading the [paper](https://arxiv.org/abs/1409.3097)
 
 # *Report* : 
-1. In progress
+1. Completed chapter 1 survey
+2. Chapter 2 onwards + paper summary in progress
