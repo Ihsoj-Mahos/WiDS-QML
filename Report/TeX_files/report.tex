@@ -23,6 +23,8 @@
 \newcommand{\E}{\mathcal{E}}
 \newcommand{\w}{\wedge}\usepackage{xcolor}
 
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \usepackage{braket}
 
@@ -55,7 +57,7 @@ Quantum Computing (QC), is a developing field with counter-intuitive and surpris
 Manipulating hidden information caused by the probabilistic nature of quantum information has
 enabled researchers to formulate algorithms with lesser asymptotic time complexity\cite{b1}.
 Moreover, the combination of hidden information and entanglement at the quantum level has led to 
-the reformulation of several machine learning algorithms in the language of quantum computing\cite{b2}.
+the reformulation of several machine learning algorithms in the language of quantum computing\cite{b2}\cite{b5}.
 This survey presents some of the basic concepts needed to understand quantum computing and quantum information, 
 and covers some of the machine learning algorithms which have been optimized due to this field.
 \end{abstract}
@@ -311,7 +313,293 @@ operation on a single qubit. Then there exist real numbers $\alpha, \beta, \gamm
 \end{equation*}
 
 \subsection{Controlled operation}
-Controlled operations. 
+Suppose $U$ is an arbitrary single qubit unitary operation. A controlled-$U$ operation is a two qubit operation, again with a control and a target qubit. If the control
+qubit is set then $U$ is applied to the target qubit, otherwise the target qubit is left alone; that is, 
+\begin{equation*}
+    \ket{c}\ket{t} \to \ket{c}U^{c}\ket{t}
+\end{equation*}
+where $\ket{c}, \ket{t}$ are computational basis states. The general operation is then done via tensor products.
+The controlled-U operation is represented by the circuit shown in figure \ref{controlled-u}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.5]{Images/controlled-u.png}}
+\caption{Controlled-U operation. The top line is the control qubit, and the bottom line is the target qubit. If the
+control qubit is set then U is applied to the target, otherwise it is left alone}
+\label{controlled-u}
+\end{figure}
+
+Now, our goal is to construct a generalised controlled-U operation. In order to do this, the following theorem is useful : 
+
+\textbf{Theorem} : Suppose $U$ is a unitary gate on a single qubit. Then there exist unitary
+operators $A, B, C$ on a single qubit such that $ABC = I$ and $U = e^{i\alpha} AXBXC$,
+where $\alpha$ is some overall phase factor.
+
+First, let us consider the controlled phase shift operation. This operation does, $\ket{00} \to \ket{00}, \ket{01} \to \ket{01}, 
+\ket{10} \to e^{i\alpha}\ket{10}, \ket{11} \to e^{i\alpha}\ket{11}$. The equivalent circuits for the same are given in figure \ref{controlled-phase-shift}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.5]{Images/controlled-phase-shift.png}}
+\caption{Controlled phase shift gate and an equivalent circuit for two qubits}
+\label{controlled-phase-shift}
+\end{figure}
+
+Now, we have enough to implement a controlled phase operation. The circuit for the same utilizes black boxes for $A, B, C$, and the \verb|CNOT| gate, along with 
+controlled phase shift. The circuit is shown in figure \ref{u-exp}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.5]{Images/u-exp.png}}
+\caption{Circuit implementing the controlled-U operation for single qubit U}
+\label{u-exp}
+\end{figure}
+
+\subsection{Multi-qubit controlled operations}
+
+A well-known example of a multi-qubit control circuit is known as the \textit{toffoli gate}. 
+This gate acts on the target qubit only if both the control qubits are in the $\ket{1}$ state. Hence, it is an extended 
+\verb|CNOT| gate in some sense. 
+The circuit for the same is shown in figure \ref{toffoli}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.5]{Images/toffoli.png}}
+\caption{Toffoli gate}
+\label{toffoli}
+\end{figure}
+
+We would further like to generalise this idea just as we did for a single control qubit. So, we introduce the generalised controlled-U gate, with 
+$n$ control qubits and $k$ target qubits. This operator acts on a system of qubits as, 
+\begin{equation*}
+    C^{n}(U)\ket{x_{1}x_{2}{}_{\cdots}x_{n}}\ket{\psi} = \ket{x_{1}x_{2}{}_{\cdots}x_{n}}U^{x_{1}x_{2}{}_{\cdots}x_{n}}\ket{\psi}
+\end{equation*}
+where $x_{1}x_{2}{}_{\cdots}x_{n}$ in the exponent of $U$ means the product of the bits $x_{1}, x_{2},{}_{\cdots}, x_{n}$
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.5]{Images/gen_u_example.png}}
+\caption{Sample circuit representation for the $C^{n}(U)$ operation, where $U$ is a unitary operator on $k$ qubits, for
+$n = 4$ and $k = 3$.}
+\label{gen-u-ex}
+\end{figure}
+
+Now, our task is to construct this generalised controlled-$U$ gate using the gates we know how to construct.
+As it turns out, we can construct we can construct this gate using the single control qubit controlled-$U$ gate, and the toffoli gates. 
+The circuit for the same has been shown in figure \ref{u-construct}.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.5]{Images/u-construct.png}}
+\caption{Network implementing the $C^{n}(U)$ operation, for the case $n = 5$.}
+\label{u-construct}
+\end{figure}
+
+\subsection{Circuit Identities}
+Here are some important circuit identities. Let subscripts denote which qubit an operator acts on, and let 
+$C$ be a \verb|CNOT| with qubit $1$ the control qubit and qubit $2$ the target qubit. 
+\begin{align*}
+    CX_{1}C &= X_{1}X_{2} \\ 
+    CY_{1}C &= Y_{1}X_{2} \\ 
+    CZ_{1}C &= Z_{1} \\ 
+    CX_{2}C &= X_{2} \\ 
+    CY_{2}C &= Z_{1}Y_{2} \\
+    CZ_{2}C &= Z_{1}Z_{2} \\
+    R_{z,1}(\theta)C &= CR_{z,1}(\theta) \\ 
+    R_{x,2}(\theta)C &= CR_{x,2}(\theta)
+\end{align*} 
+
+\subsection{Measurement \& Universal circuits}
+
+There are really only two things worth knowing here : 
+\begin{enumerate}
+    \item The ﬁrst principle is that classically conditioned operations 
+    can be replaced by quantum conditioned operations
+    \item \textbf{Principle of deferred measurement}: Measurements can always be moved from
+    an intermediate stage of a quantum circuit to the end of the circuit; if the
+    measurement results are used at any stage of the circuit then the classically
+    controlled operations can be replaced by conditional quantum operations.
+\end{enumerate}
+
+Now, let's talk about universal quantum circuits. In classical circuits, \verb|NOT|, \verb|AND| and \verb|OR| are 
+enough to describe any boolean function. Similarly for quantum circuits, there are three constructions we can make : 
+\begin{enumerate}
+    \item The ﬁrst construction shows that an arbitrary unitary operator may be expressed ex-
+    actly as a product of unitary operators that each acts non-trivially only on a subspace
+    spanned by two computational basis states.
+    \item The second construction combines the ﬁrst
+    construction with the results of the previous section to show that an arbitrary unitary
+    operator may be expressed exactly using single qubit and \verb|CNOT| gates.
+    \item The third construction combines the second construction with a proof that single qubit operation may
+    be approximated to arbitrary accuracy using the Hadamard, phase, and $\pi/8$ gates.
+\end{enumerate}
+
+For more on universal quantum gates, one can refer \cite{b2}. 
+
+\section{Quantum Fourier Transform}
+The quantum Fourier transform is an efﬁcient quantum algorithm for performing a Fourier transform of quantum mechanical amplitudes.
+This idea is useful in algorithms like Grover's search. Let's explore the discrete fourier transform. Let $\ket{0}, \ket{1}, \cdots, \ket{N-1}$
+be an orthonormal basis. Let the scalar coefficients corresponding to these basis states be $x_{1}, x_{2}, \cdots, x_{N-1}$. Then, the transformation is 
+defined by; 
+\begin{equation*}
+    y_{k} \equiv \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1}x_{j}e^{\frac{2\pi ijk}{N}}
+\end{equation*}
+\begin{equation*}
+    \ket{j} \to \frac{1}{\sqrt{N}}\sum_{k=0}{N-1}e^{\frac{2\pi ijk}{N}}\ket{k}
+\end{equation*}
+Equivalently, an arbitrary state 
+\begin{equation*}
+    \sum_{j=0}^{N-1}x_{j}\ket{j} \xrightarrow{U} \sum_{k=0}^{N-1}y_{k}\ket{k}
+\end{equation*}
+where $U$ is a unitary operator. \\
+In the following, we take $N = 2^n$ , where $n$ is some integer, and the basis $\ket{0}, \ket{1}, \cdots, \ket{2^n-1}$ is the 
+computational basis for an $n$ qubit quantum computer. It is helpful to write the state 
+$\ket{j}$ using the binary representation $j = j_{1}j_{2}{}_{\cdots}j_{n}$. 
+More formally, $j = j_{1}2^{n-1} + j_{2}2^{n-2} + \cdots + j_{n}2^{0}$. It is also convenient to adopt the notation 
+$0.j_{l}j_{l+1}{}_{\cdots}j_{m}$ to represent 
+the binary fraction $j_{l}/2 + j_{l+1}/4 + \cdots + j_{m}/2^{m-l+1}$. 
+
+With a little algebra the quantum Fourier transform can be given the following useful
+\textit{product representation}:
+\begin{equation*}
+    \ket{j_{1}, {}_{\cdots}, j_{n}} \to \frac{(\ket{0} + e^{2\pi i0.j_{n}}\ket{1})\cdots(\ket{0} + e^{2\pi i0.j_{1}{}_{\cdots}j_{n-1}j_{n}}\ket{1})}{2^{n/2}}
+\end{equation*}
+This product representation is so useful that you may even wish to consider this to be the
+deﬁnition of the quantum Fourier transform. This allows us to construct an efﬁcient quantum circuit computing the Fourier transform, a
+proof that the quantum Fourier transform is unitary, and provides insight into algorithms
+based upon the quantum Fourier transform. \\ 
+Let the gate $R_k$ denotes the unitary transformation; 
+\begin{equation*}
+    R_k \equiv 
+    \begin{bmatrix}
+    1 & 0 \\ 
+    0 & e^{2\pi i/2^k}
+    \end{bmatrix}
+\end{equation*}
+Given this, the quantum fourier transform circuit, i.e. an efficient algorithm for the same is shown in figure \ref{qft}.
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.25]{Images/qft.png}}
+\caption{Efﬁcient circuit for the quantum Fourier transform. This circuit is easily derived from the \textit{product
+representation} for the quantum Fourier transform. Not shown are swap gates at the end of the circuit which
+reverse the order of the qubits, or normalization factors of $1/\sqrt{2}$ in the output.}
+\label{qft}
+\end{figure}
+
+\subsection{Phase estimation}
+The Fourier transform is the key to a general procedure known as \textit{phase estimation},
+which in turn is the key for many quantum algorithms. Suppose a unitary operator $U$
+has an eigenvector $\ket{u}$ with eigenvalue $e^{2\pi i\phi}$, where the value of $\ket{\phi}$ is unknown. The goal
+of the phase estimation algorithm is to estimate $\ket{\phi}$. To perform the estimation we assume
+that we have available black boxes (sometimes known as oracles) capable of preparing the $j$
+state $\ket{u}$ and performing the controlled-$U^{2^j}$ operation, for suitable non-negative integers
+$j$.
+
+The quantum phase estimation procedure uses two registers. The ﬁrst register contains
+$t$ qubits initially in the state $\ket{0}$. How we choose $t$ depends on two things: the number
+of digits of accuracy we wish to have in our estimate for $\phi$, and with what probability
+we wish the phase estimation procedure to be successful. 
+
+The second register begins in the state $\ket{u}$, and contains as many qubits as is necessary
+to store $\ket{u}$. Phase estimation is performed in two stages. First, we apply the circuit shown
+in Figure \ref{phase-1}. 
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.25]{Images/phase-1.png}}
+\caption{The ﬁrst stage of the phase estimation procedure. Normalization factors of $1/\sqrt{2}$ have been omitted, on
+the right.}
+\label{phase-1}
+\end{figure}
+The second stage of phase estimation, shown in figure \ref{phase-2}, is to apply the inverse quantum Fourier transform
+on the ﬁrst register. This is obtained by reversing the circuit for the quantum Fourier
+transform in the previous section, and can be done in $\Omega(t^2)$ steps. The
+third and ﬁnal stage of phase estimation is to read out the state of the ﬁrst register by
+doing a measurement in the computational basis.
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.25]{Images/phase-2.png}}
+\caption{Schematic of the overall phase estimation procedure. The top $t$ qubits (the '/' denotes a bundle of
+wires, as usual) are the ﬁrst register, and the bottom qubits are the second register, numbering as many as required
+to perform $U$. The state u is an eigenstate of $U$ with eigenvalue $e^{2i\pi\phi}$. The output of the measurement is an
+approximation to $\phi$ accurate to $t - \ceil*{log(2 + \frac{1}{2\epsilon})}$ bits, with probability of success at least $1 - \epsilon$.}
+\label{phase-2}
+\end{figure}
+Summarizing, the phase estimation algorithm allows one to estimate the phase $\phi$ of an
+eigenvalue of a unitary operator $U$, given the corresponding eigenvector $\ket{u}$. An essential
+feature at the heart of this procedure is the ability of the inverse Fourier transform to
+perform the transformation
+\begin{equation*}
+    \frac{1}{2^{t/2}}\sum_{j=0}^{2^t-1}e^{2\pi i\phi j}\ket{j}\ket{u} \to \ket{\tilde{\phi}}\ket{u}
+\end{equation*}
+where $\tilde{\phi}$ denotes a state which is a good estimator for $\phi$ when measured.
+
+\subsection{Application : Order finding}
+As it turns out the problems of order finding and factoring are equivalent, that is, the problem of 
+factoring can be expressed as an order finding problem. So, if we solve order finding, we get factoring for free.
+Now, what is the order finding problem? For positive integers $x$ and $N$, $x < N$, with no common factors, the order of $x$ modulo $N$
+is deﬁned to be the least positive integer, $r$, such that $x^r \equiv 1$(mod $N$).
+
+The quantum algorithm for order-ﬁnding is just the phase estimation algorithm applied
+to the unitary operator
+\begin{equation*}
+    U\ket{y} = \ket{xy(\text{mod N})}
+\end{equation*}
+with $y \in \{0, 1\}^L$. (Note that here and below, when $N \leq y \leq 2^L - 1$, we use the
+convention that $xy$(mod N) is just $y$ again. That is, $U$ only acts non-trivially when
+$0 \leq y \leq N - 1$). A simple calculation shows that the states deﬁned by
+\begin{equation*}
+    \ket{u_s} \equiv \frac{1}{\sqrt{r}}\sum_{k=0}^{r-1}e^{-\frac{2\pi isk}{r}\ket{x^k \text{ mod N}}}
+\end{equation*}
+for integer $0 \leq s \leq r - 1$ are eigenstates of $U$ , since
+\begin{align*}
+    U\ket{u_s} &= \frac{1}{\sqrt{r}}\sum_{k=0}^{r-1}e^{-\frac{2\pi isk}{r}\ket{x^{k+1} \text{ mod N}}} \\ 
+    &= e^{\frac{2\pi is}{r}}\ket{u_s}
+\end{align*}
+Using the phase estimation procedure allows us to obtain, with high accuracy, the corresponding 
+eigenvalues $exp(2\pi is/r)$, from which we can obtain the order $r$ with a little bit more work.
+
+There are two important requirements for us to be able to use the phase estimation
+procedure: we must have efﬁcient procedures to implement a controlled-$U^{2^j}$ operation
+for any integer $j$, and we must be able to efﬁciently prepare an eigenstate $\ket{u_s}$ with a non-trivial 
+eigenvalue, or at least a superposition of such eigenstates. The ﬁrst requirement
+is satisﬁed by using a procedure known as modular exponentiation, with which we
+can implement the entire sequence of controlled-$U^{2^j}$ operations applied by the phase
+estimation procedure using $O(L^3)$ gates. \\ 
+The second requirement is a bit trickier. preparing $\ket{u_s}$ requires that we know $r$, so
+this is out of the question. Fortunately, there is a clever observation which allows us to
+circumvent the problem of preparing $\ket{u_s}$, which is that : 
+\begin{equation*}
+    \frac{1}{\sqrt{r}}\sum_{s=0}^{r-1}\ket{u_s} = \ket{1}
+\end{equation*}
+Hence, preparing $\ket{1}$ in the second register suffices, which is trivial. Hence, the circuit is complete and is shown in 
+figure \ref{order}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.25]{Images/order.png}}
+\caption{Quantum circuit for the order-ﬁnding algorithm.}
+\label{order}
+\end{figure}
+
+Even after doing this, we are not done yet. The measurement will give us an estimate of $s/r$. We need to determine the value of $r$ from this. This can be done using the continued fractions 
+expansion since we know the number of bits upto which these numbers upto a good accuracy. The process of continued fractions finally yields us $r$.
+The algorithm has been summarised in figure \ref{order-summ}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.3]{Images/order-summary.png}}
+\caption{Algorithm for the order-finding problem}
+\label{order-summ}
+\end{figure}
+
+\subsection{Application : Factoring}
+The factoring problem is given a natural number $N \in \N$, to return a non-trivial factor of $N$, that is, other than 1 and $N$ itself.
+As described earlier, we will simply reduce this problem into order-finding. This is how we do it. 
+\begin{enumerate}
+    \item If $N$ is even, return the factor $2$.
+    \item Determine whether $N = a^b$ for integers $a \geq 1$ and $b \geq 2$, and if so
+    return the factor $a$ (classical algorithm described in \cite{b6}).
+    \item Randomly choose $x$ in the range $1$ to $N-1$. If $gcd(x, N) > 1$ then return
+    the factor $gcd(x, N)$.
+    \item Use the order-ﬁnding subroutine to ﬁnd the order $r$ of $x$ modulo $N$ .
+    \item If $r$ is even and $x^{r/2} \neq - 1(\text{mod N})$ then compute $gcd(x^{r/2} - 1, N)$ and
+    $gcd(x^{r/2} + 1, N)$, and test to see if one of these is a non-trivial factor,
+    returning that factor if so. Otherwise, the algorithm fails.
+\end{enumerate}
+That is it. 
+
+\section{Quantum Search Algorithms}
+
+To be completed.
 
 \section*{Acknowledgement}
 I would like to thank the mentors of this project Siddhant Midha and Aditya Sriram for giving 
@@ -322,6 +610,8 @@ me the opportunity to study and appreciate this subject.
 \bibitem{b2} M. Neilson and I. Chuang, ``Quantum Computing and Quantum Information, 10\textsuperscript{th} edition''
 \bibitem{b3} S. Midha and A. Sriram ``Learning with Quantum Computers'' \href{https://github.com/siddhant-midha/WiDS-22-Learning-with-quantum-computers-}{\textit{Github repository}}, January 2023.
 \bibitem{b4} C. H. Bennett, G. Brassard ``Quantum cryptography: Public key distribution and coin tossing'' March 2020.
+\bibitem{b5} O. Simeone ``An Introduction to Quantum Machine Learning for Engineers'' May 2022.
+\bibitem{b6} D. J. Bernstein. \href{http://cr.yp.to/papers/powers-19971106-retypeset20220326.pdf}{``Detecting perfect powers in essentially linear time"}. Mathematics of Computation 67 (1998), 1253-1283 Date: 1997.11.06. AMS version: 31pp.
 \end{thebibliography}
 \vspace{12pt}
 

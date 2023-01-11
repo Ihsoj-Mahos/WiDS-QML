@@ -15,4 +15,12 @@
 \BOOKMARK [2][-]{subsection.4.4}{Composite systems}{section.4}% 15
 \BOOKMARK [1][-]{section.5}{Quantum circuits}{}% 16
 \BOOKMARK [2][-]{subsection.5.1}{Controlled operation}{section.5}% 17
-\BOOKMARK [1][-]{section*.2}{References}{}% 18
+\BOOKMARK [2][-]{subsection.5.2}{Multi-qubit controlled operations}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.3}{Circuit Identities}{section.5}% 19
+\BOOKMARK [2][-]{subsection.5.4}{Measurement \046 Universal circuits}{section.5}% 20
+\BOOKMARK [1][-]{section.6}{Quantum Fourier Transform}{}% 21
+\BOOKMARK [2][-]{subsection.6.1}{Phase estimation}{section.6}% 22
+\BOOKMARK [2][-]{subsection.6.2}{Application : Order finding}{section.6}% 23
+\BOOKMARK [2][-]{subsection.6.3}{Application : Factoring}{section.6}% 24
+\BOOKMARK [1][-]{section.7}{Quantum Search Algorithms}{}% 25
+\BOOKMARK [1][-]{section*.2}{References}{}% 26

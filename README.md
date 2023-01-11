@@ -20,7 +20,8 @@ This repository contains my work in the project Learning with Quantum Computers 
 
 # *Report* : 
 1. Completed chapter 1,2 survey
-2. Chapter 4 onwards + paper summary in progress
+2. Completed chapter 4,5 survey
+2. Chapter 6 onwards + paper summary in progress
 
 # *Implementation* : 
 1. Chosen [this](https://pennylane.ai/qml/demos/tutorial_geometric_qml.html) for implementation
