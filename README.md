@@ -16,7 +16,7 @@ This repository contains my work in the project Learning with Quantum Computers 
 
 # *Paper reading* : 
 1. Completed reading Intro to QML [paper](https://arxiv.org/abs/1409.3097)
-2. Intro to QML for engineers [paper](https://arxiv.org/abs/2205.09510) in progress
+2. Intro to QML for engineers [paper](https://arxiv.org/abs/2205.09510) completed
 
 # *Report* : 
 1. Completed chapter 1,2 survey
