@@ -12,7 +12,7 @@ This repository contains my work in the project Learning with Quantum Computers 
 1. Completed problems 1, 2, 3.
 2. "Twist" problem is in progress
 3. Added a notebook to list different functionalities offered in Qiskit. [This](https://github.com/Ihsoj-Mahos/WiDS-QML/blob/master/Week%201/QML_Intro.ipynb) can be referred by people unfamiliar with QC (like I was :p)
-4. Qubit rotation [tutorial](https://pennylane.ai/qml/demos/tutorial_qubit_rotation.html) in progress.
+4. Qubit rotation [tutorial](https://pennylane.ai/qml/demos/tutorial_qubit_rotation.html) completed.
 5. Implementation of [this](https://pennylane.ai/qml/demos/tutorial_geometric_qml.html) paper in progress.
 
 # *Paper reading* : 
