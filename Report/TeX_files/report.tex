@@ -599,7 +599,126 @@ That is it.
 
 \section{Quantum Search Algorithms}
 
-To be completed.
+This section deals with searching for solutions through a set of some inputs. The algorithm we explore here is called the \textit{grover search algorithm}. But first, 
+how do we know which input is a solution? For this, we need something called an \textit{oracle}
+
+\subsection{Oracle}
+Suppose we wish to search through a search space of $N$ elements. Rather than search the
+elements directly, we concentrate on the index to those elements, which is just a number
+in the range $0$ to $N - 1$. For convenience we assume $N = 2^n$, so the index can be stored
+in $n$ bits, and that the search problem has exactly $M$ solutions, with $1 \leq M \leq N$ . A
+particular instance of the search problem can conveniently be represented by a function
+$f$ , which takes as input an integer $x$, in the range $0$ to $N - 1$. By deﬁnition, $f(x) = 1$ if
+$x$ is a solution to the search problem, and $f(x) = 0$ if $x$ is not a solution to the search
+problem.
+
+Given this framework, a quantum oracle is just a black box. It is a unitary operator whose action is described as : 
+\begin{equation*}
+    \ket{x}\ket{q} \xrightarrow{O} \ket{x}\ket{q \oplus f(x)}
+\end{equation*}
+We can check whether $x$ is a solution to our search problem by preparing $\ket{x}\ket{0}$, applying the oracle,
+and checking to see if the oracle qubit has been ﬂipped to $\ket{1}$.
+In the quantum search algorithm it is useful to apply the oracle with the oracle qubit
+initially in the state $\frac{\ket{0}-\ket{1}}{\sqrt{2}}$, The action of the oracle is : 
+\begin{equation*}
+    \ket{0}\left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right) \xrightarrow{O} (-1)^{f(x)}\ket{0}\left(\frac{\ket{0} - \ket{1}}{\sqrt{2}}\right)
+\end{equation*}
+Since the second qubit doesn't change here, it can be omitted : 
+\begin{equation*}
+    \ket{0} \xrightarrow{O} (-1)^{f(x)}\ket{0}
+\end{equation*}
+We say that the oracle marks the solutions to the search problem, by shifting the phase
+of the solution. As it turns out, the grover search algorithm can find a solution in $O(\sqrt{N/M})$ time, where 
+$N$ is the cardinality of the search space, $M$ is the number of solutions. 
+
+\subsection{The procedure}
+The algorithm proper makes use of a single n qubit register. The internal workings of the oracle, in-
+cluding the possibility of it needing extra work qubits, are not important to the description
+of the quantum search algorithm proper. The goal of the algorithm is to ﬁnd a solution
+to the search problem, using the smallest possible number of applications of the oracle.
+
+The algorithm begins with the computer in the state $\ket{0}^{\otimes n}$ . The Hadamard transform
+is used to put the computer in the equal superposition state,
+\begin{equation*}
+    \ket{\psi} = \frac{1}{N^{1/2}}\sum_{x=0}^{N-1}\ket{x}
+\end{equation*}
+The quantum search algorithm then consists of repeated application of a quantum
+subroutine, know as the Grover iteration or Grover operator, which we denote G. The
+Grover iteration, whose quantum circuit is illustrated in Figure \ref{grover-it}, may be broken up
+into four steps:
+\begin{enumerate}
+    \item Apply the oracle $O$.
+    \item Apply the Hadamard transform $H^{\otimes n}$.
+    \item Perform a conditional phase shift on the computer, with every computational basis
+    state except $\ket{0}$ receiving a phase shift of $-1$,
+    \begin{equation*}
+        \ket{x} \to -(-1)^{\delta_{x0}}\ket{x}
+    \end{equation*}
+    \item Apply the Hadamard transform $H^{\otimes n}$.
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.3]{Images/grover-iteration.png}}
+\caption{Circuit for the Grover iteration, G}
+\label{grover-it}
+\end{figure}
+
+It is useful to note that the combined effect of steps 2, 3, and 4 is, 
+\begin{equation*}
+    H^{\otimes n}(2\ket{0}\bra{0}-I)H^{\otimes n} = 2\ket{\psi}\bra{\psi}-I
+\end{equation*}
+where $\ket{\psi}$ is the equally weighted superposition of states. Thus the Grover iteration,
+$G$, may be written $G = (2\ket{\psi}\bra{\psi} - I)O$. 
+
+\subsection{Geometric visualisation}
+The Grover iteration can be regarded as a rotation in the two-dimensional
+space spanned by the starting vector $\ket{\psi}$ and the state consisting of a uniform superposition
+of solutions to the search problem. We adopt the convention that, $\sum_{x}^{'}$, 
+indicates a sum over all $x$ which are solutions to the search problem, and $\sum_{x}^{''}$
+indicates a sum over all $x$ which are not solutions to the search problem. Deﬁne normalized
+states, 
+\begin{equation*}
+    \ket{\alpha} \equiv \frac{1}{\sqrt{N-M}}\sum_{x}^{''}\ket{x}
+\end{equation*}
+\begin{equation*}
+    \ket{\beta} \equiv \frac{1}{\sqrt{M}}\sum_{x}^{'}\ket{x}
+\end{equation*}
+Simple algebra shows that the initial state $\ket{\psi}$ may be re-expressed as, 
+\begin{equation*}
+    \ket{\psi} = \sqrt{\frac{N-M}{N}}\ket{\alpha} + \sqrt{\frac{M}{N}}\ket{\beta}
+\end{equation*}
+so the initial state of the quantum computer is in the space spanned by $\ket{\alpha}$, $\ket{\beta}$.
+
+The effect of G can be understood in a beautiful way by realizing that the oracle
+operation $O$ performs a reﬂection about the vector $\ket{\alpha}$ in the plane deﬁned by $\ket{\alpha}$ and
+$\ket{\beta}$. Similarly, $2\ket{\psi}\bra{\psi} - I$ also performs a
+reﬂection in the plane deﬁned by $\ket{\alpha}$ and $\ket{\beta}$, about the vector $\ket{\psi}$. And the product of
+two reﬂections is a rotation. Let $cos \frac{\theta}{2} = (N - M )/N$ ,
+so that $\ket{\psi} = cos \frac{\theta}{2}\ket{\alpha} + sin \frac{\theta}{2}\ket{\beta}$. As Figure \ref{grover-vis} shows, the two reﬂections which
+comprise $G$ take $\ket{\psi}$ to, 
+\begin{equation*}
+    G\ket{\psi} = cos \frac{3\theta}{2} \ket{\alpha} + sin \frac{3\theta}{2} \ket{\beta}
+\end{equation*}
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.3]{Images/grover-vis.png}}
+\caption{Grover's iteration visualised}
+\label{grover-vis}
+\end{figure}
+
+\subsection{Performance}
+Now, the question boils down to how many grover's iterations/rotations are required to convert $\ket{\psi}$ to $\ket{\beta}$? As it turns 
+out the upper bound on the number of rotations $R$ required after some calculations is given by, 
+\begin{equation*}
+    R \leq \left[\frac{\pi}{4}\sqrt{\frac{N}{M}}\right]
+\end{equation*}
+Finally, the algorithm is summarised in Figure \ref{grover-algo}. 
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.3]{Images/grover-algo.png}}
+\caption{Grover's Algorithm}
+\label{grover-algo}
+\end{figure}
 
 \section*{Acknowledgement}
 I would like to thank the mentors of this project Siddhant Midha and Aditya Sriram for giving 
