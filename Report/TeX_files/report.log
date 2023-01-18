@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.12.15)  18 JAN 2023 18:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.12.15)  18 JAN 2023 21:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -427,7 +427,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Images/bloch.png, id=131, 258.9675pt x 242.9075pt>
+<Images/bloch.png, id=152, 258.9675pt x 242.9075pt>
 File: Images/bloch.png Graphic file (type png)
 <use Images/bloch.png>
 Package pdftex.def Info: Images/bloch.png  used on input line 115.
@@ -436,7 +436,7 @@ Package pdftex.def Info: Images/bloch.png  used on input line 115.
 
 
 ]
-<Images/single-gates.png, id=162, 236.885pt x 231.86626pt>
+<Images/single-gates.png, id=184, 236.885pt x 231.86626pt>
 File: Images/single-gates.png Graphic file (type png)
 <use Images/single-gates.png>
 Package pdftex.def Info: Images/single-gates.png  used on input line 145.
@@ -445,55 +445,55 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 15
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<Images/cnot.png, id=165, 184.69pt x 181.67876pt>
+<Images/cnot.png, id=187, 184.69pt x 181.67876pt>
 File: Images/cnot.png Graphic file (type png)
 <use Images/cnot.png>
 Package pdftex.def Info: Images/cnot.png  used on input line 164.
 (pdftex.def)             Requested size: 129.2821pt x 127.17424pt.
  [2 </home/soham-joshi/Documents/WiDS/QML/Report/Images/bloch.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/single-gates.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/cnot.png>]
-<Images/teleport.png, id=181, 529.98pt x 161.60374pt>
+<Images/teleport.png, id=204, 529.98pt x 161.60374pt>
 File: Images/teleport.png Graphic file (type png)
 <use Images/teleport.png>
 Package pdftex.def Info: Images/teleport.png  used on input line 184.
 (pdftex.def)             Requested size: 264.98933pt x 80.80167pt.
-<Images/deutch-algo.png, id=184, 501.875pt x 346.29375pt>
+<Images/deutch-algo.png, id=207, 501.875pt x 346.29375pt>
 File: Images/deutch-algo.png Graphic file (type png)
 <use Images/deutch-algo.png>
 Package pdftex.def Info: Images/deutch-algo.png  used on input line 200.
 (pdftex.def)             Requested size: 250.93687pt x 173.14644pt.
-<Images/deutch-ckt.png, id=185, 450.68375pt x 176.66pt>
+<Images/deutch-ckt.png, id=208, 450.68375pt x 176.66pt>
 File: Images/deutch-ckt.png Graphic file (type png)
 <use Images/deutch-ckt.png>
 Package pdftex.def Info: Images/deutch-ckt.png  used on input line 206.
 (pdftex.def)             Requested size: 225.34131pt x 88.32977pt.
  [3 </home/soham-joshi/Documents/WiDS/QML/Report/Images/teleport.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/deutch-algo.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/deutch-ckt.png>]
-<Images/controlled-u.png, id=203, 166.6225pt x 97.36375pt>
+<Images/controlled-u.png, id=225, 166.6225pt x 97.36375pt>
 File: Images/controlled-u.png Graphic file (type png)
 <use Images/controlled-u.png>
 Package pdftex.def Info: Images/controlled-u.png  used on input line 325.
 (pdftex.def)             Requested size: 83.31104pt x 48.68175pt.
  [4 </home/soham-joshi/Documents/WiDS/QML/Report/Images/controlled-u.png>]
-<Images/controlled-phase-shift.png, id=214, 398.48875pt x 199.74625pt>
+<Images/controlled-phase-shift.png, id=236, 398.48875pt x 199.74625pt>
 File: Images/controlled-phase-shift.png Graphic file (type png)
 <use Images/controlled-phase-shift.png>
 Package pdftex.def Info: Images/controlled-phase-shift.png  used on input line 341.
 (pdftex.def)             Requested size: 199.24388pt x 99.87288pt.
-<Images/u-exp.png, id=216, 493.845pt x 145.54375pt>
+<Images/u-exp.png, id=238, 493.845pt x 145.54375pt>
 File: Images/u-exp.png Graphic file (type png)
 <use Images/u-exp.png>
 Package pdftex.def Info: Images/u-exp.png  used on input line 350.
 (pdftex.def)             Requested size: 246.92189pt x 72.77168pt.
-<Images/toffoli.png, id=218, 373.395pt x 147.55125pt>
+<Images/toffoli.png, id=240, 373.395pt x 147.55125pt>
 File: Images/toffoli.png Graphic file (type png)
 <use Images/toffoli.png>
 Package pdftex.def Info: Images/toffoli.png  used on input line 363.
 (pdftex.def)             Requested size: 186.69704pt x 73.77544pt.
-<Images/gen_u_example.png, id=219, 263.98625pt x 223.83624pt>
+<Images/gen_u_example.png, id=241, 263.98625pt x 223.83624pt>
 File: Images/gen_u_example.png Graphic file (type png)
 <use Images/gen_u_example.png>
 Package pdftex.def Info: Images/gen_u_example.png  used on input line 376.
 (pdftex.def)             Requested size: 131.9928pt x 111.91785pt.
-<Images/u-construct.png, id=221, 395.4775pt x 241.90375pt>
+<Images/u-construct.png, id=243, 395.4775pt x 241.90375pt>
 File: Images/u-construct.png Graphic file (type png)
 <use Images/u-construct.png>
 Package pdftex.def Info: Images/u-construct.png  used on input line 387.
@@ -503,50 +503,66 @@ Overfull \hbox (3.53433pt too wide) detected at line 460
 [] \OMS/cmsy/m/n/10 ! []
  []
 
-<Images/qft.png, id=241, 994.71625pt x 228.855pt>
+<Images/qft.png, id=263, 994.71625pt x 228.855pt>
 File: Images/qft.png Graphic file (type png)
 <use Images/qft.png>
 Package pdftex.def Info: Images/qft.png  used on input line 475.
 (pdftex.def)             Requested size: 248.67845pt x 57.21361pt.
-<Images/phase-1.png, id=243, 1017.8025pt x 470.75874pt>
+<Images/phase-1.png, id=265, 1017.8025pt x 470.75874pt>
 File: Images/phase-1.png Graphic file (type png)
 <use Images/phase-1.png>
 Package pdftex.def Info: Images/phase-1.png  used on input line 500.
 (pdftex.def)             Requested size: 254.45pt x 117.68939pt.
-<Images/phase-2.png, id=245, 632.3625pt x 210.7875pt>
+<Images/phase-2.png, id=267, 632.3625pt x 210.7875pt>
 File: Images/phase-2.png Graphic file (type png)
 <use Images/phase-2.png>
 Package pdftex.def Info: Images/phase-2.png  used on input line 511.
 (pdftex.def)             Requested size: 158.09024pt x 52.69675pt.
 [6 </home/soham-joshi/Documents/WiDS/QML/Report/Images/qft.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/phase-1.png>]
-<Images/order.png, id=259, 990.70125pt x 236.885pt>
+<Images/order.png, id=281, 990.70125pt x 236.885pt>
 File: Images/order.png Graphic file (type png)
 <use Images/order.png>
 Package pdftex.def Info: Images/order.png  used on input line 569.
 (pdftex.def)             Requested size: 247.6747pt x 59.2211pt.
-<Images/order-summary.png, id=261, 745.78625pt x 662.475pt>
+<Images/order-summary.png, id=283, 745.78625pt x 662.475pt>
 File: Images/order-summary.png Graphic file (type png)
 <use Images/order-summary.png>
 Package pdftex.def Info: Images/order-summary.png  used on input line 579.
 (pdftex.def)             Requested size: 223.7376pt x 198.74403pt.
  [7 </home/soham-joshi/Documents/WiDS/QML/Report/Images/phase-2.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/order.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/order-summary.png>]
-<Images/grover-iteration.png, id=275, 734.745pt x 253.94875pt>
+<Images/grover-iteration.png, id=297, 734.745pt x 253.94875pt>
 File: Images/grover-iteration.png Graphic file (type png)
 <use Images/grover-iteration.png>
 Package pdftex.def Info: Images/grover-iteration.png  used on input line 661.
 (pdftex.def)             Requested size: 220.42519pt x 76.1852pt.
  [8 </home/soham-joshi/Documents/WiDS/QML/Report/Images/grover-iteration.png>]
-<Images/grover-vis.png, id=293, 466.74374pt x 443.6575pt>
+<Images/grover-vis.png, id=315, 466.74374pt x 443.6575pt>
 File: Images/grover-vis.png Graphic file (type png)
 <use Images/grover-vis.png>
 Package pdftex.def Info: Images/grover-vis.png  used on input line 704.
 (pdftex.def)             Requested size: 140.0242pt x 133.09827pt.
-<Images/grover-algo.png, id=295, 732.7375pt x 483.8075pt>
+<Images/grover-algo.png, id=317, 732.7375pt x 483.8075pt>
 File: Images/grover-algo.png Graphic file (type png)
 <use Images/grover-algo.png>
 Package pdftex.def Info: Images/grover-algo.png  used on input line 718.
 (pdftex.def)             Requested size: 219.82294pt x 145.14337pt.
-
+<Images/knn.png, id=323, 590.205pt x 263.98625pt>
+File: Images/knn.png Graphic file (type png)
+<use Images/knn.png>
+Package pdftex.def Info: Images/knn.png  used on input line 735.
+(pdftex.def)             Requested size: 177.06287pt x 79.19647pt.
+ [9 </home/soham-joshi/Documents/WiDS/QML/Report/Images/grover-vis.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/grover-algo.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/knn.png>]
+<Images/dec-tree.png, id=337, 613.29124pt x 396.48125pt>
+File: Images/dec-tree.png Graphic file (type png)
+<use Images/dec-tree.png>
+Package pdftex.def Info: Images/dec-tree.png  used on input line 801.
+(pdftex.def)             Requested size: 183.98878pt x 118.94528pt.
+<Images/markov.png, id=339, 525.965pt x 368.37625pt>
+File: Images/markov.png Graphic file (type png)
+<use Images/markov.png>
+Package pdftex.def Info: Images/markov.png  used on input line 820.
+(pdftex.def)             Requested size: 157.79071pt x 110.51372pt.
+ [10 </home/soham-joshi/Documents/WiDS/QML/Report/Images/dec-tree.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/markov.png>]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -558,29 +574,31 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 737.
-[9 </home/soham-joshi/Documents/WiDS/QML/Report/Images/grover-vis.png> </home/soham-joshi/Documents/WiDS/QML/Report/Images/grover-algo.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 737.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 859.
+[11
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 859.
  (/home/soham-joshi/Documents/WiDS/QML/Report/report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 737.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 737.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 859.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 859.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 4626A309126E6732F4D9C5B6A9C62B54;1934.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 737.
+(rerunfilecheck)             Checksum: A718AF59604B0B3EBB648355F859A531;2290.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 859.
  ) 
 Here is how much of TeX's memory you used:
- 9687 strings out of 483107
- 150236 string characters out of 5964629
- 429451 words of memory out of 5000000
- 24438 multiletter control sequences out of 15000+600000
+ 9727 strings out of 483107
+ 150794 string characters out of 5964629
+ 433670 words of memory out of 5000000
+ 24463 multiletter control sequences out of 15000+600000
  571925 words of font info for 99 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  43i,13n,38p,678b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /home/soham-joshi/Documents/WiDS/QML/Report/report.pdf (9 pages, 615867 bytes).
+Output written on /home/soham-joshi/Documents/WiDS/QML/Report/report.pdf (11 pages, 719222 bytes).
 PDF statistics:
- 404 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 85 named destinations out of 1000 (max. 500000)
- 341 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 453 PDF objects out of 1000 (max. 8388607)
+ 367 compressed objects within 4 object streams
+ 97 named destinations out of 1000 (max. 500000)
+ 396 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -57,7 +57,7 @@ Quantum Computing (QC), is a developing field with counter-intuitive and surpris
 Manipulating hidden information caused by the probabilistic nature of quantum information has
 enabled researchers to formulate algorithms with lesser asymptotic time complexity\cite{b1}.
 Moreover, the combination of hidden information and entanglement at the quantum level has led to 
-the reformulation of several machine learning algorithms in the language of quantum computing\cite{b2}\cite{b5}.
+the reformulation of several machine learning algorithms in the language of quantum computing\cite{b2}\cite{b5}\cite{b7}.
 This survey presents some of the basic concepts needed to understand quantum computing and quantum information, 
 and covers some of the machine learning algorithms which have been optimized due to this field.
 \end{abstract}
@@ -720,6 +720,126 @@ Finally, the algorithm is summarised in Figure \ref{grover-algo}.
 \label{grover-algo}
 \end{figure}
 
+\section{Quantum Machine Learning}
+In this section, we will primarily focused on the studies described in \cite{b1}, \cite{b5}, \cite{b7} (\cite{b8} is a good resource on how to read papers). 
+Coming up with machine learning algorithms using quantum computation is particularly difficult since the algorithm has to perform better than the classical version, 
+is often unintuitive.
+
+\subsection{k-nearest neighbour methods}
+This is a standard algorithm for unsupervised learning. The procedure of the algorithm relies upon clustering the data-points into some groups
+depending on the distances of the points from the centroids of the groups. This is illustrated in Figure \ref{knn}. This is one of the many 
+machine learning methods that rely on the notion of a \textit{distance metric}. There are a lot of distance metrics available, but measuring 
+the inner product between two points or states is a good start since the notion of overlap is natural in the field of quantum mechanics.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.3]{Images/knn.png}}
+\caption{a: Illustration of the
+kNN method of pattern classification. The new vector (black cross) gets assigned to the class that the
+majority of its $k$ closest neighbours have (in this case
+it would be the orange circle shape). b: A variation
+is the nearest-centroid method in which the closest
+mean vector of a class of vectors defines the classification of a new input. This can be understood as a
+$k$-nearest neighbour method with preprocessed data
+and $k$ = 1.}
+\label{knn}
+\end{figure}
+
+There is a neat method to find the overlap of two states known as the \textit{swap test}. 
+Given a quantum state $\ket{a,b,0_{anc}}$ containing the two wavefunctions as well
+as an ancilla register initially set to 0, a Hadamard transformation sets the ancilla into a superposition
+$1/\sqrt{2}(\ket{0} + \ket{1})$ followed by a controlled SWAP-gate on a and b which swaps the two states under the
+condition that the ancilla is in state $\ket{1}$. A second Hadamard gate on the ancilla results in state
+$\ket{\psi_{SW}} = \frac{1}{2}\ket{0}(\ket{a,b} + \ket{b,a}) + \frac{1}{2}\ket{1}(\ket{a,b}-\ket{b,a})$ for
+which the probability of measuring the ground state is given by
+\begin{equation*}
+    P(\ket{0_{anc}}) = \frac{1}{2}(1 + \innerproduct{a}{b}^2)
+\end{equation*}
+the distance between two real-valued n-dimensional vectors $a$ and $b$ is computed through a quantum measurement.
+The following states are prepared : 
+\begin{align*}
+    \ket{\psi} &= \frac{1}{\sqrt{2}}(\ket{0,a} + \ket{1,b}) \\ 
+    \ket{\phi} &= \frac{1}{\sqrt{Z}}(\|a\|\ket{0} - \|b\|\ket{1}) \\
+    \Rightarrow \frac{1}{4}Z\|\innerproduct{\phi}{\psi}\|^2 &= \|a-b\|^2
+\end{align*}
+where, $Z = \|a\|^2 + \|b\|^2$. Hence, we can compute the distance between two vectors using this method.
+Quantum clustering algorithms work along similar lines so will not be covered here.
+
+\subsection{Quantum pattern recognition}
+The aim of this model is to measure the hamming distance betwen two binary quantum states. 
+Say we are given two binary strings as $\ket{a_{1}a_{2}{}_{\cdots}a_{n}}$ and $\ket{b_{1}b_{2}{}_{\cdots}b_{n}}$ with entries 
+$a_i, b_i \in \{0, 1\}$. Now construct, 
+\begin{equation*}
+    \ket{\psi} = \ket{a_{1}a_{2}{}_{\cdots}a_{n},b_{1}b_{2}{}_{\cdots}b_{n}} \otimes \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})
+\end{equation*}
+Now, denote 
+\begin{equation*}
+    \bar{d_k} = 
+    \begin{cases}
+        0, \text{if } \ket{a_k} = \ket{b_k} \\ 
+        1, \text{else}
+    \end{cases}
+\end{equation*}
+Now, over-write qubits of $b$ using \verb|XOR| gate. 
+\begin{equation*}
+    \ket{\psi^{'}} = \ket{a_{1}{}_{\cdots}a_{n}, \bar{d_1}, {}_{\cdots}, \bar{d_n}} \otimes \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})
+\end{equation*}
+To write the total Hamming distance $\bar{d_H}(\bar{a}, \bar{b})$, we use the unitary operator $U = exp(-i\frac{\pi}{2n}H)$
+with $H = 1 \otimes \sum_{k}(\frac{1}{2}(\sigma_z + 1))_{d_k} \otimes \sigma_z$. Note that this adds a negative sign to the ancilla. 
+Now, apply $H_{anc} = 1 \otimes 1 \otimes H$ consequently resulting in, 
+\begin{align*}
+    \ket{\psi^{''}} &= cos[\frac{\pi}{2n}\bar{d_H}(\bar{a}, \bar{b})]\ket{a_{1}{}_{\cdots}a_{n}, \bar{d_1}, {}_{\cdots}, \bar{d_n}, 0}\\ 
+    &+ sin[\frac{\pi}{2n}\bar{d_H}(\bar{a}, \bar{b})]\ket{a_{1}{}_{\cdots}a_{n}, \bar{d_1}, {}_{\cdots}, \bar{d_n}, 1}
+\end{align*}
+Measuring the ancilla in $\ket{0}$ leads to a state in whichthe amplitude scales with the Hamming distance
+between $a$ and $b$.
+
+\subsection{Decision Trees}
+Decision trees (Figure \ref{tree}) are important models which deal with functions that split dataset into ``most-organised'' sub-datasets. This can 
+be measured in terms of Shannon's entropy.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.3]{Images/dec-tree.png}}
+\caption{A simple example of a decision tree for
+the classification of emails. The geometric shapes
+symbolise feature vectors from different classes that
+are devided according to decision functions along the
+tree structure}
+\label{tree}
+\end{figure}
+However, the quantum analogue of this is not very clear. So, we won't go into further depth here.
+
+\subsection{Hidden quantum Markov Models}
+Hidden Markov models (Figure \ref{markov}) are another important method of machine learning that have been investigated from the perspective of quantum information.
+In a (first order discrete and static) Markov model, a system has a countable set of states
+$S = \{s_m\}_{m=1,{}_{\cdots},M}$ and the transition between these states are governed by a stochastic process in such
+a way that given a set of transition probabilities $\{a_{ml}\}_{m,l=1,\cdots,M}$ , the system's state at time $t + 1$ only depends on the previous state at time $t$
+In a hidden markov model, the state of the system is only accessible through observations at time $t(o_t)$ that can take one set of symbols, and an observation again has a
+certain probability to be invoked by a specific state.
+
+\begin{figure}[htbp]
+\centerline{\includegraphics[scale = 0.3]{Images/markov.png}}
+\caption{A hidden Markov model
+is a stochastic process of state transitions. In this
+sketch, the three states $s_1 , s_2 , s_3$ are connected with
+lines symbolising transition probabilities. A deterministic realisation is a sequence of states, here the
+transition $s_1 \to s_2 \to s_1$ that give rise to observations $o_{12} \to o_4  \to o_8$ . A task for hidden Markov models
+is to guess the most likely state sequence given an observation sequence.}
+\label{markov}
+\end{figure}
+
+The state of a system is given by a density matrix $\rho$ and transitions between
+states are governed by completely positive trace-nonincreasing superoperators $A^i$ acting on these matrices.
+These operations can always be represented by a set of Kraus operators $\{K_{1}^{i}, {}_{\cdots}, K_{q}^{i}\}$
+fulfilling the probability conservation condition $\sum_{q} K_{q}^{i\dag}K_{q}^{i} \leq 1$, (don't know what Kraus operators are? Just think of them as operators for now)
+\begin{equation*}
+    \rho^{'} = A^{i}\rho = \sum_{q} K_{q}^{i\dag}\rho K_{q}^{i}
+\end{equation*}
+The probability of obtaining state $\rho_s = P(\rho_s)^{-1}A^{s}\rho$ is given by
+\begin{equation*}
+    P(\rho_s) = tr[A^{s}\rho]
+\end{equation*}
+
+
 \section*{Acknowledgement}
 I would like to thank the mentors of this project Siddhant Midha and Aditya Sriram for giving 
 me the opportunity to study and appreciate this subject. 
@@ -731,6 +851,8 @@ me the opportunity to study and appreciate this subject.
 \bibitem{b4} C. H. Bennett, G. Brassard ``Quantum cryptography: Public key distribution and coin tossing'' March 2020.
 \bibitem{b5} O. Simeone ``An Introduction to Quantum Machine Learning for Engineers'' May 2022.
 \bibitem{b6} D. J. Bernstein. \href{http://cr.yp.to/papers/powers-19971106-retypeset20220326.pdf}{``Detecting perfect powers in essentially linear time"}. Mathematics of Computation 67 (1998), 1253-1283 Date: 1997.11.06. AMS version: 31pp.
+\bibitem{b7} N. Wiebe, A. Kapoor, and K. M. Svore ``Quantum Algorithms for Nearest-Neighbor Methods for Supervised and Unsupervised Learning'' July 2014.
+\bibitem{b8} S. Keshav ``How to Read a Paper'', David R. Cheriton School of Computer Science, University of Waterloo
 \end{thebibliography}
 \vspace{12pt}
 

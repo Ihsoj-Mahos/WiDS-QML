@@ -24,7 +24,8 @@ This repository contains my work in the project Learning with Quantum Computers 
 # *Report* : 
 1. Completed chapter 1,2 survey
 2. Completed chapter 4,5,6 survey
-3. Paper summary in progress. Report [link](https://github.com/Ihsoj-Mahos/WiDS-QML/blob/master/Report/report.pdf)
+3. Completed survey of intro to QML papers
+4. Literature survey ongoing. Report [link](https://github.com/Ihsoj-Mahos/WiDS-QML/blob/master/Report/report.pdf)
 
 # *Implementation* : 
 1. Chosen [this](https://pennylane.ai/qml/demos/tutorial_geometric_qml.html) for implementation
