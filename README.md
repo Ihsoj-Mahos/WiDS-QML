@@ -19,7 +19,7 @@ This repository contains my work in the project Learning with Quantum Computers 
 1. Completed reading Intro to QML [paper](https://arxiv.org/abs/1409.3097)
 2. Intro to QML for engineers [paper](https://arxiv.org/abs/2205.09510) completed
 3. Here is a nice resource for [learning how to read papers](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)
-4. Selected this [paper](https://arxiv.org/pdf/1401.2142.pdf) for the lit review
+4. Selected this [paper](https://arxiv.org/pdf/1804.08641.pdf) for the lit review
 
 # *Report* : 
 1. Completed chapter 1,2 survey
@@ -28,4 +28,4 @@ This repository contains my work in the project Learning with Quantum Computers 
 4. Literature survey ongoing. Report [link](https://github.com/Ihsoj-Mahos/WiDS-QML/blob/master/Report/report.pdf)
 
 # *Implementation* : 
-1. Chosen [this](https://pennylane.ai/qml/demos/tutorial_geometric_qml.html) for implementation
+1. Chosen [this](https://pennylane.ai/qml/demos/tutorial_quantum_gans.html#sphx-glr-demos-tutorial-quantum-gans-py) for implementation
