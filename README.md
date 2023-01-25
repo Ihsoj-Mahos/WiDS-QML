@@ -20,6 +20,7 @@ This repository contains my work in the project Learning with Quantum Computers 
 2. Intro to QML for engineers [paper](https://arxiv.org/abs/2205.09510) completed
 3. Here is a nice resource for [learning how to read papers](https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf)
 4. Selected this [paper](https://arxiv.org/pdf/1804.08641.pdf) for the lit review
+5. Reading supporting papers [1](https://arxiv.org/pdf/1406.2661.pdf), [2](https://arxiv.org/pdf/2010.06201.pdf) 
 
 # *Report* : 
 1. Completed chapter 1,2 survey
