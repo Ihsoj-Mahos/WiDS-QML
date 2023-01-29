@@ -1,6 +1,6 @@
 # **WiDS : Quantum Machine Learning**
 
-This repository contains my work in the project Learning with Quantum Computers as a part of Winter in Data Science (WiDS) conducted by the Analytics Club, IIT Bombay under mentors Aditya Sriram and Siddhant Midha. The project repository can be found [here](https://github.com/siddhant-midha/WiDS-22-Learning-with-quantum-computers-)
+This repository contains my work in the project Learning with Quantum Computers as a part of Winter in Data Science (WiDS) conducted by the Analytics Club, IIT Bombay under mentors Aditya Sriram and Siddhant Midha. The project repository can be found [here](https://github.com/siddhant-midha/WiDS-22-Learning-with-quantum-computers-), the documentation can be found [here](https://docs.google.com/document/d/1ypzsO3h70JiBwiijPuR1gMPkfzIAw3X5mB02KZzNHws/edit?usp=sharing)
 
 # *Reading so far* : 
 1. Completed chapter 1
