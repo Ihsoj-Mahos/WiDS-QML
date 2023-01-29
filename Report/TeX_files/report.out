@@ -32,4 +32,9 @@
 \BOOKMARK [2][-]{subsection.8.2}{Quantum pattern recognition}{section.8}% 32
 \BOOKMARK [2][-]{subsection.8.3}{Decision Trees}{section.8}% 33
 \BOOKMARK [2][-]{subsection.8.4}{Hidden quantum Markov Models}{section.8}% 34
-\BOOKMARK [1][-]{section*.2}{References}{}% 35
+\BOOKMARK [1][-]{section.9}{Quantum GANs \(Literature Review\)}{}% 35
+\BOOKMARK [2][-]{subsection.9.1}{Classical GANs}{section.9}% 36
+\BOOKMARK [2][-]{subsection.9.2}{Quantum GANs}{section.9}% 37
+\BOOKMARK [2][-]{subsection.9.3}{Quantum loss function}{section.9}% 38
+\BOOKMARK [2][-]{subsection.9.4}{Quantum Gradient}{section.9}% 39
+\BOOKMARK [1][-]{section*.2}{References}{}% 40
